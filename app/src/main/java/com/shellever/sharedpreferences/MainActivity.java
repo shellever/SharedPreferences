@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mFemaleGenderRb.setChecked(!gender);
                 mAgeEt.setText(age < 0 ? "" : String.valueOf(age)); // 若小于0，则设置为""，否则设置为相应的数值
                 Toast.makeText(this, "Restore Account Successfully", Toast.LENGTH_SHORT).show();
-                testSharedPreferencesXML();     // 读取SharedPreferences保存数据而生成的xml文件内容并显示在TextView上
+                testSharedPreferencesXML();// 读取SharedPreferences保存数据而生成的xml文件内容并显示在TextView上
                 break;
         }
     }

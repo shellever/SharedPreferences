@@ -6,14 +6,18 @@
 
 * `getSharedPreferences()` - 可以指定名称来确定多个不同的参数配置文件 (Context)
 
-> // 使用指定名称为"MyPrefsFile"的配置文件，模式为MODE_PRIVATE来获取当前程序的SharedPreferences对象，
-> // 若文件不存在时，则直接创建；若存在，则直接使用
-> SharedPreferences sp = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);    
+```java
+// 使用指定名称为"MyPrefsFile"的配置文件，模式为MODE_PRIVATE来获取当前程序的SharedPreferences对象，
+// 若文件不存在时，则直接创建；若存在，则直接使用
+SharedPreferences sp = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);    
+```
 
 * getPreferences() - 默认使用本地的Activity的类名来作为唯一的一个参数配置文件的名称 (Activity)
 
-> // 默认使用本地的Activity类名作为参数配置文件的名称
-> SharedPreferences sp = getPreferences(MODE_PRIVATE);       
+```java
+// 默认使用本地的Activity类名作为参数配置文件的名称
+SharedPreferences sp = getPreferences(MODE_PRIVATE);       
+```
 
 * Context中的文件创建模式mode
 
@@ -407,7 +411,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mFemaleGenderRb.setChecked(!gender);
                 mAgeEt.setText(age < 0 ? "" : String.valueOf(age)); // 若小于0，则设置为""，否则设置为相应的数值
                 Toast.makeText(this, "Restore Account Successfully", Toast.LENGTH_SHORT).show();
-                testSharedPreferencesXML();     // 读取SharedPreferences保存数据而生成的xml文件内容并显示在TextView上
+                testSharedPreferencesXML();// 读取SharedPreferences保存数据而生成的xml文件内容并显示在TextView上
                 break;
         }
     }
