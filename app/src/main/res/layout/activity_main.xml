@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:text="@string/text_account_information"/>
+    
+    <View
+        android:layout_width="180dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorDarkGray"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:text="@string/text_account_username"/>
+
+        <EditText
+            android:id="@+id/et_account_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:inputType="text"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:hint="@string/hint_account_username"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:text="@string/text_account_password"/>
+
+        <EditText
+            android:id="@+id/et_account_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:inputType="text"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:hint="@string/hint_account_password"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:text="@string/text_account_gender"/>
+
+        <RadioGroup
+            android:id="@+id/rg_account_gender"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <RadioButton
+                android:id="@+id/rb_account_gender_male"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:textSize="16sp"
+                android:text="@string/text_gender_male"/>
+
+            <RadioButton
+                android:id="@+id/rb_account_gender_female"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:textSize="16sp"
+                android:text="@string/text_gender_female"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:text="@string/text_account_age"/>
+
+        <EditText
+            android:id="@+id/et_account_age"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:maxLength="3"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:hint="@string/hint_account_age"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_bg_selector"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:text="@string/text_reset"/>
+
+        <Space
+            android:layout_width="2dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_bg_selector2"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:text="@string/text_save"/>
+
+        <Space
+            android:layout_width="2dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_restore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_bg_selector"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:text="@string/text_restore"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_xml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>

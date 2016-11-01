@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">SharedPreferences</string>
+
+    <!--Character Map-->
+    <string name="u_female_sign">&#2640;</string>
+    <string name="u_male_sign">&#2642;</string>
+
+    <string name="hint_account_username">Username</string>
+    <string name="text_account_username">Username</string>
+    <string name="text_account_password">Password</string>
+    <string name="hint_account_password">Password</string>
+    <string name="text_account_gender">Gender</string>
+    <string name="text_gender_male">Male</string>
+    <string name="text_gender_female">Female</string>
+    <string name="text_account_age">Age</string>
+    <string name="hint_account_age">Age</string>
+    <string name="text_reset">Reset</string>
+    <string name="text_save">Save</string>
+    <string name="text_restore">Restore</string>
+    <string name="text_account_information">Account Information</string>
+</resources>
