@@ -1,6 +1,6 @@
 ## SharedPreferences
 
-`SharedPreferences`是Android中一个轻量级的数据存储类，适合用于保存应用程序的配置参数。当使用SharedPreferences保存数据，内部会自动生成xml文件来存放真正的数据，而xml文件存放在`/data/data/<package name>/shared_prefs`目录下。
+`SharedPreferences`是Android中一个轻量级的数据存储类，适用于保存应用程序的配置参数。当使用SharedPreferences保存数据，内部会自动生成xml文件来存放真正的数据，而xml文件存放在`/data/data/<package name>/shared_prefs`目录下。
 
 #### 获取应用程序中的SharedPreferences对象的两种方法
 
