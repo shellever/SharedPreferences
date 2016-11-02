@@ -71,7 +71,7 @@ private File getSharedPrefsFile(Context context, String name) {
 
 由于布局代码比较长，这里只贴出布局后的效果截图：
 
-![prefs_layout.png](./screenshot/prefs_layout.png)
+![prefs_layout.PNG](./screenshot/prefs_layout.PNG)
 
 * MainActivity.java
 
