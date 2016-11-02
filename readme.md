@@ -57,7 +57,7 @@ String path = getFilesDir().getParent();                        // 获取文件�
 String file = path + "/shared_prefs/" + PREFS_ACCOUNT + ".xml"; // SharedPreferences生成的xml数据文件
 ```
 
-另一种获取SharedPreferences数据文件的方法是通过Context的`getDir()`方法来获取文件的父目录路径，但是查看方法的源码可知，getDir()方法会自动在目录名称加上app_前缀，即编程app_shared_prefs，所以需要手动去掉：
+另一种获取SharedPreferences数据文件的方法是通过Context的`getDir()`方法来获取文件的父目录路径，但是查看方法的源码可知，getDir()方法会自动在目录名称加上`app_`前缀，即编程app_shared_prefs，所以需要手动去掉：
 
 ```java
 private File getSharedPrefsFile(Context context, String name){
