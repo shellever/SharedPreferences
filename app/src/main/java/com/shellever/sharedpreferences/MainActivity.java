@@ -150,14 +150,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // FilesDir's Parent: /data/data/com.shellever.sharedpreferences
     // File: /data/data/com.shellever.sharedpreferences/shared_prefs/account.xml
     private void testSharedPreferencesXML() {
-//        String path = getFilesDir().getParent();    // 获取文件目录的父目录路径
-//        Toast.makeText(this, "FilesDir's Parent: " + path, Toast.LENGTH_SHORT).show();
-//        String file = path + "/shared_prefs/" + PREFS_ACCOUNT + ".xml"; // SharedPreferences生成的xml数据文件
-//        Toast.makeText(this, "File: " + file, Toast.LENGTH_SHORT).show();
-//        String text = file;                         // 将xml的完整路径也显示在TextView上
-//        text += "\n\n";
-        String text = "";
+        // String file = getSharedPrefsFileString(this, PREFS_ACCOUNT);
         File file = getSharedPrefsFile(this, PREFS_ACCOUNT);
+        String text = "";
         text += file.getPath();
         text += "\n\n";
 

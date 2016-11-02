@@ -57,6 +57,16 @@ String path = getFilesDir().getParent();                        // 获取文件�
 String file = path + "/shared_prefs/" + PREFS_ACCOUNT + ".xml"; // SharedPreferences生成的xml数据文件
 ```
 
+另一种获取SharedPreferences数据文件的方法是通过Context的`getDir()`方法来获取文件的父目录路径，但是查看方法的源码可知，getDir()方法会自动在目录名称加上app_前缀，即编程app_shared_prefs，所以需要手动去掉：
+
+```java
+private File getSharedPrefsFile(Context context, String name){
+    String dirPath = context.getDir("shared_prefs", Context.MODE_PRIVATE).getPath();
+    dirPath = dirPath.replace("app_", "");  // getDir()中会在目录名称前自动加上app_变成app_shared_prefs
+    return new File(dirPath, name + ".xml");
+}
+```
+
 * xml布局activity_main.xml
 
 ```xml
@@ -421,11 +431,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // FilesDir's Parent: /data/data/com.shellever.sharedpreferences
     // File: /data/data/com.shellever.sharedpreferences/shared_prefs/account.xml
     private void testSharedPreferencesXML() {
-        String path = getFilesDir().getParent();    // 获取文件目录的父目录路径
-        Toast.makeText(this, "FilesDir's Parent: " + path, Toast.LENGTH_SHORT).show();
-        String file = path + "/shared_prefs/" + PREFS_ACCOUNT + ".xml"; // SharedPreferences生成的xml数据文件
-        Toast.makeText(this, "File: " + file, Toast.LENGTH_SHORT).show();
-        String text = file;                         // 将xml的完整路径也显示在TextView上
+        // String file = getSharedPrefsFileString(this, PREFS_ACCOUNT);
+        File file = getSharedPrefsFile(this, PREFS_ACCOUNT);
+        String text = "";
+        text += file.getPath();
         text += "\n\n";
 
         FileInputStream fis = null;
@@ -454,6 +463,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 e.printStackTrace();
             }
         }
+    }
+
+    // /Sdk/sources/android-21/android/app/ContextImpl.java
+    // 895 public File getSharedPrefsFile(String name);
+    //     |--- makeFilename(getPreferencesDir(), name + ".xml");
+    // 942 private File getPreferencesDir();
+    //     |--- mPreferencesDir = new File(getDataDirFile(), "shared_prefs");
+    //1077 public File getFilesDir();
+    //     |--- mFilesDir = new File(getDataDirFile(), "files");
+    //2177 private File getDataDirFile();
+    //     |--- mPackageInfo.getDataDirFile();
+    //2185 public File getDir(String name, int mode);
+    //     |--- makeFilename(getDataDirFile(), name);
+    //2362 private File makeFilename(File base, String name);
+    //     |--- new File(base, name);
+    private String getSharedPrefsFileString(Context context, String name){
+        String path = context.getFilesDir().getParent();    // 获取文件目录的父目录路径
+        return path + "/shared_prefs/" + name + ".xml";     // SharedPreferences生成的xml数据文件
+    }
+
+    private File getSharedPrefsFile(Context context, String name){
+        String dirPath = context.getDir("shared_prefs", Context.MODE_PRIVATE).getPath();
+        dirPath = dirPath.replace("app_", "");  // getDir()中会在目录名称前自动加上app_变成app_shared_prefs
+        return new File(dirPath, name + ".xml");
     }
 
 }
