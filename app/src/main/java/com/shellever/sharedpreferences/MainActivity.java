@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initView();
+    }
+
+    private void initView() {
         mXMLTv = (TextView) findViewById(R.id.tv_xml);
 
         mUsernameEt = (EditText) findViewById(R.id.et_account_username);
@@ -85,17 +89,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_reset:      // 复位各个控件
-                reset();
+            case R.id.btn_reset:
+                reset();            // 复位各个控件
                 Toast.makeText(this, "Reset Account Successfully", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.btn_save:       // 读取并判断各个控件的数据，并保存到SharedPreferences中
-                if (save()) return;
+            case R.id.btn_save:
+                // 获取EditText控件上的文本并转成字符串，同时去掉首尾两端的空白符
+                username = mUsernameEt.getText().toString().trim();
+                if (TextUtils.isEmpty(username)) {      // return if null or ""
+                    Toast.makeText(this, "Username is empty.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                password = mPasswordEt.getText().toString().trim();
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(this, "Password is empty.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String ageString = mAgeEt.getText().toString().trim();
+                if (TextUtils.isEmpty(ageString)) {
+                    Toast.makeText(this, "Age is empty.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                age = Integer.valueOf(ageString);
+
+                save();             // 读取并判断各个控件的数据，并保存到SharedPreferences中
                 Toast.makeText(this, "Save Account Successfully", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.btn_restore:   // 读取保存在SharedPreferences中的数据，并依次显示在控件上
-                restore();
+            case R.id.btn_restore:
+                restore();          // 读取保存在SharedPreferences中的数据，并依次显示在控件上
                 Toast.makeText(this, "Restore Account Successfully", Toast.LENGTH_SHORT).show();
 
                 // 读取SharedPreferences保存数据而生成的xml文件内容并显示在TextView上
@@ -119,26 +142,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private boolean save() {
-        // 获取EditText控件上的文本并转成字符串，同时去掉首尾两端的空白符
-        username = mUsernameEt.getText().toString().trim();
-        if (TextUtils.isEmpty(username)) {      // return if null or ""
-            Toast.makeText(this, "Username is empty.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-        password = mPasswordEt.getText().toString().trim();
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Password is empty.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-        String ageString = mAgeEt.getText().toString().trim();
-        if (TextUtils.isEmpty(ageString)) {
-            Toast.makeText(this, "Age is empty.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        age = Integer.valueOf(ageString);
-
         sp = getSharedPreferences(PREFS_ACCOUNT, MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();        // 获取Editor对象
         editor.putString(KEY_ACCOUNT_USERNAME, username);   // 保存字符串数据
@@ -146,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.putBoolean(KEY_ACCOUNT_GENDER, gender);      // 保存布尔数据
         editor.putInt(KEY_ACCOUNT_AGE, age);                // 保存整型数据
         editor.apply();             // 异步提交方法
-        return false;
+        return true;
     }
 
     private void reset() {
@@ -209,12 +212,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //     |--- makeFilename(getDataDirFile(), name);
     //2362 private File makeFilename(File base, String name);
     //     |--- new File(base, name);
-    private String getSharedPrefsFileString(Context context, String name){
+    private String getSharedPrefsFileString(Context context, String name) {
         String path = context.getFilesDir().getParent();// 获取文件目录的父目录路径
         return path + "/shared_prefs/" + name + ".xml"; // SharedPreferences生成的xml数据文件
     }
 
-    private File getSharedPrefsFile(Context context, String name){
+    private File getSharedPrefsFile(Context context, String name) {
         String dirPath = context.getDir("shared_prefs", Context.MODE_PRIVATE).getPath();
         // getDir()中会在目录名称前自动加上app_变成app_shared_prefs
         dirPath = dirPath.replace("app_", "");
