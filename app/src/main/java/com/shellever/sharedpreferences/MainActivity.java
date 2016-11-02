@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private File getSharedPrefsFile(Context context, String name) {
         String dirPath = context.getDir("shared_prefs", Context.MODE_PRIVATE).getPath();
-        // getDir()中会在目录名称前自动加上app_变成app_shared_prefs
+        // getDir()会在目录名称前自动加上app_变成app_shared_prefs
         dirPath = dirPath.replace("app_", "");
         return new File(dirPath, name + ".xml");
     }
