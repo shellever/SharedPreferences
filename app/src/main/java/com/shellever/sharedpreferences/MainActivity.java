@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_reset:
                 reset();            // 复位各个控件
-                Toast.makeText(this, "Reset Account Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Reset Account Okay", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_save:
                 // 获取EditText控件上的文本并转成字符串，同时去掉首尾两端的空白符
@@ -115,11 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 age = Integer.valueOf(ageString);
 
                 save();             // 读取并判断各个控件的数据，并保存到SharedPreferences中
-                Toast.makeText(this, "Save Account Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Save Account Okay", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_restore:
                 restore();          // 读取保存在SharedPreferences中的数据，并依次显示在控件上
-                Toast.makeText(this, "Restore Account Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Restore Account Okay", Toast.LENGTH_SHORT).show();
 
                 // 读取SharedPreferences保存数据而生成的xml文件内容并显示在TextView上
                 testSharedPreferencesXML();
