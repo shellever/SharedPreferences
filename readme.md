@@ -7,9 +7,9 @@
 * `getSharedPreferences()` - 可以指定名称来确定多个不同的参数配置文件 (Context)
 
 ```java
-// 使用指定名称为"MyPrefsFile"的配置文件，模式为MODE_PRIVATE来获取当前程序的SharedPreferences对象，
+// 指定名称为"account"的配置文件，模式为MODE_PRIVATE来获取当前程序的SharedPreferences对象，
 // 若文件不存在时，则直接创建；若存在，则直接使用
-SharedPreferences sp = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);    
+SharedPreferences sp = getSharedPreferences("account", MODE_PRIVATE);    
 ```
 
 * getPreferences() - 默认使用本地的Activity的类名来作为唯一的一个参数配置文件的名称 (Activity)
