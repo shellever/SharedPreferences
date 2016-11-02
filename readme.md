@@ -50,11 +50,10 @@ SharedPreferences sp = getPreferences(MODE_PRIVATE);
 使用SharedPreferences来保存简单类型的数据，如字符串、整型、布尔型等数据，并借助Context的`getFilesDir().getParent()`方法来得到应用程序包名目录的路径，然后再以此拼接得到xml的完整路径：
 
 ```java
-// path: /data/data/com.shellever.sharedpreferences
-String path = getFilesDir().getParent();                        // 获取文件目录的父目录路径
-
-// file: /data/data/com.shellever.sharedpreferences/shared_prefs/account.xml
-String file = path + "/shared_prefs/" + PREFS_ACCOUNT + ".xml"; // SharedPreferences生成的xml数据文件
+private String getSharedPrefsFileString(Context context, String name) {
+    String path = context.getFilesDir().getParent();// 获取文件目录的父目录路径
+    return path + "/shared_prefs/" + name + ".xml"; // SharedPreferences生成的xml数据文件
+}
 ```
 
 另一种获取SharedPreferences数据文件的方法是通过Context的`getDir()`方法来获取文件的父目录路径，但是查看方法的源码可知，getDir()方法会自动在目录名称加上`app_`前缀，即编程app_shared_prefs，所以需要手动去掉：
@@ -439,26 +438,6 @@ private void testSharedPreferencesXML() {
             e.printStackTrace();
         }
     }
-}
-```
-
-获取SharedPreferences生成的xml数据文件的路径：
-
-```java
-private String getSharedPrefsFileString(Context context, String name) {
-    String path = context.getFilesDir().getParent();// 获取文件目录的父目录路径
-    return path + "/shared_prefs/" + name + ".xml"; // SharedPreferences生成的xml数据文件
-}
-```
-
-也可以使用另一种方式来获取SharedPreferences生成的xml数据文件的文件File：
-
-```java
-private File getSharedPrefsFile(Context context, String name) {
-    String dirPath = context.getDir("shared_prefs", Context.MODE_PRIVATE).getPath();
-    // getDir()中会在目录名称前自动加上app_变成app_shared_prefs
-    dirPath = dirPath.replace("app_", "");
-    return new File(dirPath, name + ".xml");
 }
 ```
 
